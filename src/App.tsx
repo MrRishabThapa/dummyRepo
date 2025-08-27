@@ -1,13 +1,18 @@
 import React from "react";
-// import Login from "./components/login";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./components/landing";
+import Login from "./components/login";
 import Signup from "./components/signup";
 
 const App: React.FC = () => {
   return (
-    <div>
-      <h1>My Firebase Auth App</h1>
-      <Signup />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </Router>
   );
 };
 
