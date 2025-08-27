@@ -41,7 +41,7 @@ const Landing: React.FC = () => {
       </div>
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 sm:px-12">
-        <h1 className="absolute top-[50%] text-6xl sm:text-7xl md:text-8xl font-extrabold text-green-300 drop-shadow-2xl">
+        <h1 className="absolute top-[1%] text-5xl sm:text-5xl md:text-5xl font-extrabold text-white drop-shadow-2xl">
           Volcomm.
         </h1>
 
@@ -49,7 +49,7 @@ const Landing: React.FC = () => {
           <Spline scene="https://prod.spline.design/I2sOEtZMa4A4ORAZ/scene.splinecode" />
         </div>
 
-        <p className="absolute top-[65%] mt-6 text-lg sm:text-xl md:text-2xl text-green-200 max-w-2xl drop-shadow-md">
+        <p className="absolute top-[60%] mt-6 text-lg sm:text-l md:text-2xl text-green-50 max-w-2xl drop-shadow-md">
           A platform where communities connect, volunteers gather, and together
           we create lasting impact. we turn small acts of kindness into
           collective movements that transform lives and strengthen communities.

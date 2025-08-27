@@ -1,63 +1,145 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 const Signup: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate(); // ✅ hook for navigation
 
-  const handleSignup = async (e: React.FormEvent) => {
+  const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match!");
+      setError("Passwords do not match");
       return;
     }
 
-    try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      alert("Signup successful!");
-    } catch (err: any) {
-      setError(err.message);
-    }
+    setError("");
+
+    alert(`Signup with: ${email}, ${password}`);
+
+    navigate("/");
   };
 
   return (
-    <div>
-      <h2>Signup</h2>
-      <form onSubmit={handleSignup}>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Confirm Password:</label>
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit">Signup</button>
-      </form>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-950 via-green-900 to-green-800 px-6">
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {[...Array(14)].map((_, i) => (
+          <span
+            key={i}
+            className={`absolute text-xl md:text-2xl ${
+              i % 2 === 0 ? "text-green-400" : "text-blue-500"
+            } animate-float`}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDuration: `${6 + Math.random() * 6}s`,
+            }}
+          >
+            {i % 2 === 0 ? "🌿" : "💧"}
+          </span>
+        ))}
+      </div>
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {[...Array(14)].map((_, i) => (
+          <span
+            key={i}
+            className={`absolute text-xl md:text-2xl ${
+              i % 2 === 0 ? "text-green-400" : "text-blue-500"
+            } animate-float`}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDuration: `${6 + Math.random() * 6}s`,
+            }}
+          >
+            {i % 2 === 0 ? "🌿" : "💧"}
+          </span>
+        ))}
+      </div>
+      <div className="bg-white/10 backdrop-blur-lg shadow-xl rounded-2xl p-8 w-full max-w-md">
+        <h2 className="text-3xl font-extrabold text-green-300 text-center mb-6">
+          Create an Account
+        </h2>
+
+        <form onSubmit={handleSignup} className="space-y-5">
+          <div>
+            <label className="block text-green-200 font-medium mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-green-400 text-green-100 placeholder-green-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+              placeholder="Enter your email"
+            />
+          </div>
+
+          <div>
+            <label className="block text-green-200 font-medium mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-green-400 text-green-100 placeholder-green-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+              placeholder="Enter password"
+            />
+          </div>
+
+          <div>
+            <label className="block text-green-200 font-medium mb-1">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              className="w-full px-4 py-3 rounded-lg bg-white/5 border border-green-400 text-green-100 placeholder-green-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+              placeholder="Confirm password"
+            />
+          </div>
+
+          {error && <p className="text-red-400 text-sm font-medium">{error}</p>}
+
+          <button
+            type="submit"
+            className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 shadow-md"
+          >
+            Signup
+          </button>
+        </form>
+
+        <p className="text-green-200 text-sm text-center mt-6">
+          Already have an account?{" "}
+          <a
+            href="/login"
+            className="text-green-400 hover:underline font-semibold"
+          >
+            Login here
+          </a>
+        </p>
+      </div>
+      <style>{`
+        @keyframes float {
+          0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+          50% { transform: translateY(-40px) rotate(180deg); opacity: 1; }
+          100% { transform: translateY(0) rotate(360deg); opacity: 0.7; }
+        }
+        .animate-float {
+          position: absolute;
+          animation-name: float;
+          animation-iteration-count: infinite;
+          animation-timing-function: ease-in-out;
+        }
+      `}</style>
     </div>
   );
 };
