@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase"; // adjust path
+import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login: React.FC = () => {
+  const notify = () => toast("Wow so easy!");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -14,8 +16,10 @@ const Login: React.FC = () => {
     setError("");
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      alert("Login successful!");
+      await signInWithEmailAndPassword(auth, email, password).then(
+        () => notify
+      );
+      <ToastContainer />;
       navigate("/dashboard");
     } catch (err: any) {
       alert(`Login failed: ${err.message}`);

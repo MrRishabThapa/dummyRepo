@@ -2,6 +2,7 @@
 import Card from "../components/card";
 import { opportunitiesData } from "../data/mockData";
 import img from "../assets/volunteer.jpg";
+import { Locate, Calendar, Timer } from "lucide-react";
 
 export default function Opportunities() {
   return (
@@ -63,9 +64,15 @@ export default function Opportunities() {
             </div>
 
             <div className="card-meta text-gray-600 text-sm space-y-1 mb-3">
-              <p>📍 {opportunity.location}</p>
-              <p>📅 {opportunity.date}</p>
-              <p>⏰ {opportunity.duration}</p>
+              <p className="flex items-center gap-2">
+                <Locate /> {opportunity.location}
+              </p>
+              <p className="flex items-center gap-2">
+                <Calendar /> {opportunity.date}
+              </p>
+              <p className="flex items-center gap-2">
+                <Timer /> {opportunity.duration}
+              </p>
             </div>
 
             <p className="card-description text-gray-700 mb-4">

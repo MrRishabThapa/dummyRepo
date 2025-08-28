@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { newsData as initialData } from "../data/mockData";
-import img from "../assets/money.jpg";
+// import img from "../assets/money.jpg";
 
 type NewsArticle = {
   id: number;
@@ -68,7 +68,7 @@ export default function News() {
             {article.image && (
               <div className="w-full">
                 <img
-                  src={img}
+                  src={article.image}
                   alt={article.title}
                   className="w-full max-h-80 object-cover"
                 />

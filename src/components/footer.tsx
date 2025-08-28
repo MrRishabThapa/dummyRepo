@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Leaf, Heart, Globe } from "lucide-react";
+import { Leaf, PersonStanding, Globe } from "lucide-react";
 // import opportunities from "../pages/opp";
 
 const Footer = () => {
@@ -45,7 +45,7 @@ const Footer = () => {
           </div>
 
           <div className="space-y-4">
-            <h3 className="font-semibold text-green-50">Emergency</h3>
+            <h3 className="font-semibold text-green-50">Customer Support</h3>
             <div className="space-y-2">
               <Link
                 to=""
@@ -62,12 +62,11 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Impact Stats */}
           <div className="space-y-4">
             <h3 className="font-semibold text-green-50">Our Impact</h3>
             <div className="space-y-2 text-sm text-green-200">
               <div className="flex items-center space-x-2">
-                <Heart className="h-4 w-4 text-green-300" />
+                <PersonStanding className="h-4 w-4 text-green-300" />
                 <span>1,247 Volunteers</span>
               </div>
               <div className="flex items-center space-x-2">
@@ -80,9 +79,7 @@ const Footer = () => {
 
         <div className="border-t border-green-700 mt-8 pt-8 text-center">
           <p className="text-green-200 text-sm">
-            © 2024 Volunteer Community. Made with{" "}
-            <Heart className="h-4 w-4 text-green-300 inline mx-1" />
-            for a better world.
+            © 2024 Volunteer Community. Made with Kindness for a better world.
           </p>
         </div>
       </div>

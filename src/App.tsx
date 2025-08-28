@@ -3,8 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/landing";
 import Login from "./components/login";
 import Signup from "./components/signup";
+import Maps from "./pages/maps";
 import Homepage from "./pages/homepage";
-import Navbar from "./components/navBar";
+import Opportunities from "./pages/opp";
+import News from "./pages/news";
+import HallOfFame from "./pages/leaderboard";
+import Layout from "./pages/layout";
 import Footer from "./components/footer";
 
 const App: React.FC = () => {
@@ -27,23 +31,24 @@ const App: React.FC = () => {
         <Route path="/signup" element={<Signup />} />
 
         <Route
-          path="/dashboard"
           element={
-            <div className="flex flex-col min-h-screen">
-              <Navbar
+            <Layout currentPage={currentPage} setCurrentPage={setCurrentPage} />
+          }
+        >
+          <Route
+            path="/dashboard"
+            element={
+              <Homepage
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}
               />
-              <div className="flex-grow">
-                <Homepage
-                  currentPage={currentPage}
-                  setCurrentPage={setCurrentPage}
-                />
-              </div>
-              <Footer />
-            </div>
-          }
-        />
+            }
+          />
+          <Route path="/opportunities" element={<Opportunities />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/hall-of-fame" element={<HallOfFame />} />
+          <Route path="/map" element={<Maps />} />
+        </Route>
       </Routes>
     </Router>
   );
