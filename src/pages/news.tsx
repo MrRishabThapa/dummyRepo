@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { newsData as initialData } from "../data/mockData";
-import img from "../assets/money.jpg";
+import img from "../assets/vol.jpg";
 
 type NewsArticle = {
   id: number;

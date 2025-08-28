@@ -24,19 +24,19 @@ const Footer = () => {
             <h3 className="font-semibold text-green-50">Quick Links</h3>
             <div className="space-y-2">
               <Link
-                to="/opportunities"
+                to="../opp.tsx"
                 className="block text-green-200 hover:text-green-100 transition-colors text-sm"
               >
                 Find Opportunities
               </Link>
               <Link
-                to="/news"
+                to="../news.tsx"
                 className="block text-green-200 hover:text-green-100 transition-colors text-sm"
               >
                 Latest News
               </Link>
               <Link
-                to="/hall-of-fame"
+                to="../leaderboard.tsx"
                 className="block text-green-200 hover:text-green-100 transition-colors text-sm"
               >
                 Hall of Fame

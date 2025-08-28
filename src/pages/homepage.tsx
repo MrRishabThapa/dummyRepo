@@ -6,6 +6,10 @@ import Opp from "./opp";
 import img from "../assets/landing.jpg";
 import about from "../assets/about.webp";
 import oppo from "../assets/oppo.jpg";
+import loc from "../assets/loc.jpg";
+import track from "../assets/track.jpg";
+import upda from "../assets/upda.jpg";
+
 type HomepageProps = {
   currentPage: string;
   setCurrentPage: (page: string) => void;
@@ -23,19 +27,19 @@ export default function Homepage({
           "Discover volunteer opportunities that match your skills and interests in your community.",
       },
       {
-        icon: "📍",
+        icon: loc,
         title: "Location-Based",
         description:
           "Find volunteer work near you with our interactive map showing urgent needs.",
       },
       {
-        icon: "🏆",
+        icon: track,
         title: "Track Impact",
         description:
           "Earn points for your contributions and see your impact on the community leaderboard.",
       },
       {
-        icon: "📰",
+        icon: upda,
         title: "Stay Updated",
         description:
           "Get the latest news and updates about community initiatives and success stories.",
