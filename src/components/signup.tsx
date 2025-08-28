@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth, database } from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ref, set } from "firebase/database";
 
 const Signup: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // ✅ hook for navigation
+  const navigate = useNavigate();
 
-  const handleSignup = (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
@@ -18,9 +21,24 @@ const Signup: React.FC = () => {
 
     setError("");
 
-    alert(`Signup with: ${email}, ${password}`);
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
 
-    navigate("/");
+      await set(ref(database, "users/" + user.uid), {
+        email: email,
+        createdAt: Date.now(),
+      });
+
+      console.log("User signed up successfully!");
+      navigate("/");
+    } catch (err: any) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -42,24 +60,8 @@ const Signup: React.FC = () => {
           </span>
         ))}
       </div>
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {[...Array(14)].map((_, i) => (
-          <span
-            key={i}
-            className={`absolute text-xl md:text-2xl ${
-              i % 2 === 0 ? "text-green-400" : "text-blue-500"
-            } animate-float`}
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDuration: `${6 + Math.random() * 6}s`,
-            }}
-          >
-            {i % 2 === 0 ? "🌿" : "💧"}
-          </span>
-        ))}
-      </div>
-      <div className="bg-white/10 backdrop-blur-lg shadow-xl rounded-2xl p-8 w-full max-w-md">
+
+      <div className="bg-white/10 backdrop-blur-lg shadow-xl rounded-2xl p-8 w-full max-w-md relative z-10">
         <h2 className="text-3xl font-extrabold text-green-300 text-center mb-6">
           Create an Account
         </h2>
@@ -127,6 +129,7 @@ const Signup: React.FC = () => {
           </a>
         </p>
       </div>
+
       <style>{`
         @keyframes float {
           0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }

@@ -1,7 +1,21 @@
 // import React from 'react';
 
-export default function LeaderboardRow({ volunteer, index }) {
-  const getRankClass = (rank) => {
+type Volunteer = {
+  name: string;
+  contributions: number;
+  points: number;
+};
+
+type LeaderboardRowProps = {
+  volunteer: Volunteer;
+  index: number;
+};
+
+export default function LeaderboardRow({
+  volunteer,
+  index,
+}: LeaderboardRowProps) {
+  const getRankClass = (rank: number) => {
     if (rank === 1) return "first";
     if (rank === 2) return "second";
     if (rank === 3) return "third";
